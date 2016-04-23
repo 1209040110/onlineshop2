@@ -1,0 +1,38 @@
+<script>
+        function submitreview() {
+        <%if(session.getAttribute("onlineUser")==null){%>
+        	alert('请先登录!');
+        <%}else{%>
+        
+            var score=$("#score").val();
+            var content=encodeURI($("#content").val(),"UTF-8");
+            $.ajax({
+                url : "AddRe.action",
+                async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                type : "GET",
+                data : {
+                    'r.score':score,
+                    'r.r_content':content,
+                    'r.p_id':'<%=(String)request.getParameter("pid")%>'
+                },
+                beforeSend: function() {
+                    //请求前的处理
+                },
+                success : function(data, textStatus) {
+                if(data=='nologin')
+                	alert('请先登录!');
+                if(data=='ok')
+                   alert('评论成功!');
+                if(data=='fail')
+					alert('评论失败!');
+                },
+                complete: function() {
+                    //请求完成的处理
+                },
+                error: function() {
+                    //请求出错处理
+                }
+            });
+            <%}%>
+        }
+    </script>

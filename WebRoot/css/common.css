@@ -1,0 +1,61 @@
+@charset "utf-8";
+/* CSS Document */
+/*========定义通用样式========*/
+.inline {
+    display: inline;
+}
+.block {
+    display: block;
+}
+.none {
+    display: none;
+}
+.inlineblock {
+    display: inline-block;
+}
+.fl {
+    float: left;
+}
+.fr {
+    float: right;
+
+}
+.rela {
+    position: relative;
+}
+.abso {
+    position: absolute;
+
+}
+.clearfix:after {
+    content: " ";
+    display: block;
+    clear: both;
+    height: 0;
+}
+.clearfix {
+    zoom: 1;
+}
+.btn {
+}
+
+.center{
+    margin:0 auto;
+    text-align:center;
+}
+.tl{
+    text-align:left;
+}
+/*黑色边框*/
+.blbo{
+    border:medium #000 solid;
+}
+.lp16{
+    letter-spacing:16px;
+}
+.lp24{
+    letter-spacing:24px;
+}
+.lp32{
+    letter-spacing:32px;
+}

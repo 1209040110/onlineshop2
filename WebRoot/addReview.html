@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="zh-CN" http-equiv="Content-Language" />
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
+    <title>网上医药馆</title>
+    <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <script src="js/jquery-1.11.0.js"></script>
+    <!--<script src="js/sha1.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
+    <style>
+        .container{
+            width:1270px;
+            margin: 0 auto;
+        }
+    </style>
+    <script>
+        function submitreview() {
+            var score=$("#score").val();
+            var content=$("#content").val;
+            var pid=$("#pid").val;
+            $.ajax({
+                url : "AddRe.action",
+                async: true, //请求是否异步，默认为异步，这也是ajax重要特性
+                type : "GET",
+                data : {
+                    'r.score':score,
+                    'r.r_content':conent,
+                    'r.pid':pid
+                },
+                beforeSend: function() {
+                    //请求前的处理
+                },
+                success : function(data, textStatus) {
+                   alert('评论成功!');
+
+                },
+                complete: function() {
+                    //请求完成的处理
+                },
+                error: function() {
+                    //请求出错处理
+                }
+            });
+        }
+    </script>
+</head>
+<body>
+<div class="container">
+    <div></div>
+    <div id="main">
+        <p>商品名：参苓白术散</p>
+        <p>打分：
+            <select  id="score">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+        </p>
+        <p>评论内容:</p>
+            <textarea  style="width: 100px; height: 50px; " id="content">
+
+            </textarea>
+        <button onclick="submitreview()">提交</button>
+    </div>
+</div>
+</body>
+</html>

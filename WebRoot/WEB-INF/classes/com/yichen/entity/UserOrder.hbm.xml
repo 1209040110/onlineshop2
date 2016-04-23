@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.yichen.entity">
+    <class name="UserOrder" table="UserOrder" >
+		<id name="o_id" column="o_id"  ></id>
+		<property name="u_id"  />
+		<property name="o_time"  />
+		<property name="sendaddrId"  />
+		<property name="totalprice"  />
+		<property name="o_status"  />
+		<property name="freight"  />
+		<property name="paymentmode"  />
+		<set name="orderItems" cascade="save-update"
+			inverse="true" lazy="false">
+			<key column="o_id"/>
+			<one-to-many class="com.yichen.entity.OrderItem"/>
+		</set>
+    </class>
+</hibernate-mapping> 

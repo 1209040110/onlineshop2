@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    //回调函数
+    function a(callback) {   //函数是一个对象
+        callback();
+    };
+    //alert(typeof a=="function");
+    function b() {
+        alert('bbb');
+    }
+    function c() {
+        alert('ccc');
+    }
+   // a(c);
+    a(function () {
+        alert('匿名函数');
+    })
+</script>
+</body>
+</html>

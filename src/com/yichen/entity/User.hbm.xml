@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.yichen.entity">
+    <class name="User" table="UserInfo" >
+		<id name="u_id" column="u_id"  ></id>
+		<property name="pwd"  />
+		<property name="truename"  />
+		<property name="sex"  />
+		<property name="birthday"  />
+		<property name="email"  />
+		<property name="phone"  />
+		<property name="address"  />
+		<property name="regtime"  />
+		<property name="credit"  />
+		<property name="rank"  />
+		<property name="securityqu1"  />
+		<property name="securityans1"  />
+		<property name="securityqu2"  />
+		<property name="securityans2"  />
+		<property name="lastlogintime"  />
+		<set name="reviews" cascade="save-update"
+			inverse="true" lazy="false">
+			<key column="u_id"/>
+			<one-to-many class="com.yichen.entity.Review"/>
+		</set>
+		
+		<set name="userOrders" cascade="save-update"
+			inverse="true" lazy="false">
+			<key column="u_id"/>
+			<one-to-many class="com.yichen.entity.UserOrder"/>
+		</set>
+    </class>
+</hibernate-mapping> 

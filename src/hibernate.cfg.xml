@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+    "-//Hibernate/Hibernate Configuration DTD//EN"
+    "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+		<property name="hibernate.transaction.factory_class">
+			org.hibernate.transaction.JDBCTransactionFactory
+		</property>
+		 
+		<mapping resource="com/yichen/entity/BigClass.hbm.xml" />
+		<mapping resource="com/yichen/entity/SmallClass.hbm.xml" />
+		<mapping resource="com/yichen/entity/Product.hbm.xml" />
+		<mapping resource="com/yichen/entity/ProductDetail.hbm.xml" />
+		<mapping resource="com/yichen/entity/User.hbm.xml" />
+		<mapping resource="com/yichen/entity/Review.hbm.xml" />
+		<mapping resource="com/yichen/entity/UserOrder.hbm.xml" />
+		<mapping resource="com/yichen/entity/OrderItem.hbm.xml" />
+		<mapping resource="com/yichen/entity/ShopCart.hbm.xml" />
+		<mapping resource="com/yichen/entity/Cancel.hbm.xml" />
+		<mapping resource="com/yichen/entity/SendAddr.hbm.xml" />
+		<mapping resource="com/yichen/entity/Favorite.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

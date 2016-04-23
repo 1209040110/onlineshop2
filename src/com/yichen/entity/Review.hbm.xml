@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.yichen.entity">
+    <class name="Review" table="Review" >
+		<id name="r_id" column="r_id"  ></id>
+		<property name="score"/>
+		<property name="imgurl"/>
+		<property name="r_content"/>
+		<property name="r_time"/>
+		<property name="p_id"/>
+		<property name="uid" column="u_id"/>
+		
+    </class>
+</hibernate-mapping> 

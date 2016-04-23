@@ -1,0 +1,13 @@
+.container{
+    width: 980px;
+    margin: 0 auto;
+}
+.left,.right{
+    float: left;
+}
+.left{
+    width: 200px;
+}
+.right{
+    width:750px;
+}

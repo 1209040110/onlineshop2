@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="onlineshop" extends="struts-default" >
+		
+		<action name="index" class="com.yichen.action.IndexAction" >
+			<result name="success">/index.jsp</result>
+		</action>
+		<action name="ShowAllScPro" class="com.yichen.action.ShowAllScPro" >
+			<result name="success">/showAllsmallclassPro.jsp</result>
+		</action>
+		<action name="ShowProDetail" class="com.yichen.action.ShowProDetail" >
+			<result name="success">/productDetail.jsp</result>
+		</action>
+		<action name="Register" class="com.yichen.action.RegisterAction" >
+			<result name="success" type="chain">index</result>
+		</action>
+		<action name="SelectAUserAllInfo" class="com.yichen.action.SelectAUserAllInfo"  >
+			<result name="success">/UserInfo.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="ShowMyShopCartsAction" class="com.yichen.action.ShowMyShopCartsAction" >
+			<result name="success">/myShopCart.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="goSettle" class="com.yichen.action.GoSettleAction" >
+			<result name="success">/orderSettle.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="SubmitOrderAction" class="com.yichen.action.SubmitOrderAction" >
+			<result name="success" type="chain">SelectAUserAllInfo</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		
+		<action name="login" class="com.yichen.action.LoginAction"  >
+			<result name="success" type="redirect">index.action</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		
+		<action name="logout" class="com.yichen.action.LogoutAction"  >
+			<result name="success" type="chain">index</result>
+		</action>
+		<action name="AddAShopcart" class="com.yichen.action.AddAShopcart" method="addAShopCart" >
+		</action>
+		<action name="checkUname" class="com.yichen.action.CheckUnameAction" method="checkUname" >
+		</action>
+		<action name="addf" class="com.yichen.action.AddFav" method="addf" >
+		</action>
+		<action name="amountChange" class="com.yichen.action.AmountChangeAction" method="amountChange" >
+		</action>
+		<action name="AddSendAddrAction" class="com.yichen.action.AddSendAddrAction" method="add" >
+		</action>
+		<action name="AddRe" class="com.yichen.action.AddReviewAction" method="addre" >
+		</action>
+	</package>
+</struts>    

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.yichen.entity">
+    <class name="ProductDetail" table="ProductDetail" >
+		<id name="p_id" column="p_id"  ></id>
+		
+		<property name="brand"  />
+		<property name="size"  />
+		<property name="cpjx"  />
+		<property name="ypfl"  />
+		<property name="pzwh"  />
+		<property name="syjl"  />
+		<property name="expire"  />
+		<property name="manufacturer"  />
+		<property name="yf"  />
+		<property name="detailimg"  />
+		<property name="description"  />
+		<property name="syz"  />
+    </class>
+</hibernate-mapping> 

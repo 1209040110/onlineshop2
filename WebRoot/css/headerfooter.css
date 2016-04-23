@@ -1,0 +1,11 @@
+.banner{
+    height: 105px;
+}
+.logo,.search,.bannerempty{
+    float: left;
+    height: 100px;
+}
+.logo{
+    width: 250px;
+    height: 100px;
+}

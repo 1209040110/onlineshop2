@@ -1,0 +1,63 @@
+.container{
+    height: auto;
+    width: 1280px;
+    margin: 0 auto;
+
+}
+div{
+    border: 1px solid black;
+}
+
+a:hover{
+	text-decoration: underline;
+	font-size:110%;
+}
+
+.cls,.mainmiddleright{
+    float: left;
+
+}
+.cls{
+    width: 250px;
+}
+.mainmiddleright{
+    width: 990px;
+}
+
+.nav ul li{
+    float: left;
+    padding-left: 20px;
+}
+.ppt{
+    width: 950px;
+    height: 320px;
+}
+.jtcb,.zbys{
+    height: 550px;
+}
+.rank ul{
+   
+}
+.rank ul li{
+    float: left;
+    width:190px;
+    
+   
+}
+
+.zbys ul li{
+    float: left;
+    padding-left: 30px;
+}
+
+.yybj ul li{
+    float: left;
+    padding-left: 30px;
+}
+.yybjimg,.yybj ul{
+    float: left;
+}
+
+.zbysimg,.zbys ul{
+    float: left;
+}

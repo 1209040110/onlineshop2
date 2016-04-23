@@ -1,0 +1,54 @@
+/*==============基础样式重置==============*/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td {
+    padding: 0;
+    margin: 0;
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{
+    display:block;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+fieldset, img {
+    border: 0;
+}
+ol, ul {
+    list-style: none;
+}
+caption, th {
+    text-align: left;
+}
+
+a, img {
+    border: 0 none;
+}
+a {
+    text-decoration: none;
+    outline: none;
+    cursor: pointer;
+    
+}
+a:hover {
+    text-decoration: none;
+}
+
+textarea {
+    resize: none;
+    font-size: 12px;
+} /*去掉火狐和谷歌浏览器的Textarea改变尺寸大小功能*/
+
+body {
+    font-size: 16px;
+    width: 100%;
+    position: relative;
+    font-family: "Microsoft YaHei", arial, "宋体", sans-serif;
+}
+input,textarea,select {
+    background-color:#fff;
+    border:1px solid #ccc;/*#ccc是亮度的灰色阴影*/
+    -webkit-border-radius:3px;
+    -moz-border-radius:3px;
+    border-radius:3px;
+
+}
