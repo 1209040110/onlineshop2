@@ -20,12 +20,9 @@ import com.yichen.entity.UserOrder;
 import com.yichen.util.HibernateUtil;
 
 public class OrderDao {
-	public String getOid(){
+	public String getOid(Session session){
 		//订单号=yyyyMMdd+10000
 		//每天的流水号从10000开始
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
-		session.beginTransaction();
 		String oid=null;
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 		String date = sdf.format(new Date());
@@ -34,7 +31,7 @@ public class OrderDao {
 		int i;
 		if(maxoid!=null&&maxoid.startsWith(date)){
 			int lsh=Integer.parseInt(maxoid.substring(maxoid.length()-5,maxoid.length()));
-			System.out.println(maxoid.substring(maxoid.length()-5,maxoid.length()));
+			//System.out.println(maxoid.substring(maxoid.length()-5,maxoid.length()));
 			lsh++;
 			oid=date+lsh;
 			//System.out.println(oid);
@@ -49,20 +46,33 @@ public class OrderDao {
 
 	}
 	
-	
-	public void addANewOrder(UserOrder userOrder){
+	public boolean deleteAOrder(String oid){
+		boolean f=true;
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		try{
 			tx=session.beginTransaction();
-			session.save(userOrder);
+			UserOrder order=(UserOrder) session.get(UserOrder.class,oid);
+			if(order==null)
+				f=false;
+			else
+				session.delete(order);
 			tx.commit();
 		}catch (RuntimeException e) {
 		    if (tx != null) tx.rollback();
 		    e.printStackTrace(); // or display error message
+		    f=false;
 		}finally{
-			session.close();
+			if(session.isOpen())
+				session.close();
 		}
+		
+		return f;
+		
+	}
+	public void addANewOrder(UserOrder userOrder,Session session){
+			session.save(userOrder);
+		
 	}
 	
 	public int selectAOrderStatus(String o_id){
@@ -102,13 +112,50 @@ public class OrderDao {
 			session.close();
 		}
 	}
+	
+	public List<UserOrder> selectAUserOrders(String uid){
+		List<UserOrder> uoList=null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
+		String hql="from UserOrder uo where uo.u_id=?";
+		try{
+			tx=session.beginTransaction();
+			Query query=session.createQuery(hql);
+			query.setString(0,uid);
+			uoList=query.list();
+			tx.commit();
+		}catch (RuntimeException e) {
+		    if (tx != null) tx.rollback();
+		    e.printStackTrace(); // or display error message
+		}finally{
+			if(session.isOpen())
+				session.close();
+		}
+		return uoList;
+	}
+	public List<UserOrder> selectAllOrders(){
+		List<UserOrder> uoList=null;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
+		String hql="from UserOrder";
+		try{
+			tx=session.beginTransaction();
+			Query query=session.createQuery(hql);
+			uoList=query.list();
+			tx.commit();
+		}catch (RuntimeException e) {
+		    if (tx != null) tx.rollback();
+		    e.printStackTrace(); // or display error message
+		}finally{
+			if(session.isOpen())
+				session.close();
+		}
+		return uoList;
+	}
 	public static void main(String args[]){
 		OrderDao orderDao=new OrderDao();
 		//orderDao.addANewOrder();
-		System.out.println();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-		String date = sdf.format(new Date());
-		System.out.print(date);
+		orderDao.deleteAOrder("2016041910000");
 	}
 	
 	

@@ -19,10 +19,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--<script src="js/sha1.js"></script>-->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/commonheader.css">
     <link rel="stylesheet" type="text/css" href="css/font.css">
-    <link rel="stylesheet" type="text/css" href="css/headerfooter.css">
-    <link rel="stylesheet" type="text/css" href="css/smallclass.css">
-
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
+	<link rel="stylesheet" type="text/css" href="css/smallclass.css">
 </head>
 
 <body>

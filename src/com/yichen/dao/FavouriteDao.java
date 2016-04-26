@@ -71,4 +71,23 @@ public class FavouriteDao {
 		}
 		return f;
 	}
+	
+	public Long aProFavedSum(String pid,Session session){
+		Long r=0l;
+		String hql="select count(*) from Favorite f where f.shopCpk.p_id=? ";
+		Query query=session.createQuery(hql);
+		query.setString(0,pid);
+		r=(Long) query.uniqueResult();
+		if(r==null) r=0l;
+		return r;
+	}
+	
+	
+	
+	public static void main(String args[]){
+		Session session=HibernateUtil.getSessionFactory().openSession();
+		String pid="00001";
+		System.out.println(new FavouriteDao().aProFavedSum(pid, session));
+	}
+	
 }

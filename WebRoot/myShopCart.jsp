@@ -19,13 +19,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--<script src="js/sha1.js"></script>-->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/commonheader.css">
     <link rel="stylesheet" type="text/css" href="css/font.css">
-	<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
 </head>
 
 <body>
- <div class="container" style="width:1270px;">
+ <div class="container" >
   <s:include value="commonheader.jsp"/>
   <h3>我的购物车：</h3>
   <table border="0">
@@ -43,7 +44,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  		<tr>
   		<td width="35%"><s:property value="#shopcart.pname"/></td>
   		<td width="10%"><s:property value="%{formatDouble(#shopcart.price)}"/></td>
-  		<td width="10%"><s:property value="#shopcart.amount"/></td>
+  		<td width="10%">
+  			<span>
+  				<a href=""></a>
+  				<s:property value="#shopcart.amount"/>
+  				<a href=""></a>
+  			</span>
+  		</td>
   		<td width="10%"><s:property value="%{formatDouble(#shopcart.discountprice)}"/></td>
   		<td width="10%"><s:property value="%{formatDouble(#shopcart.discountprice*#shopcart.amount)}"/></td>
  	</tr>

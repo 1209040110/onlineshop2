@@ -19,8 +19,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--<script src="js/sha1.js"></script>-->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/commonheader.css">
     <link rel="stylesheet" type="text/css" href="css/font.css">
-    <link rel="stylesheet" type="text/css" href="css/headerfooter.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 
@@ -70,7 +72,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 	<p><a href="ShowProDetail.action?p_id=<s:property value="#phb.p_id" />"><s:property value="#phb.p_name" /></a></p>
                                 	<p>￥<s:property value="#phb.unitprice" /></p>
                                	 	<p><a href="ShowProDetail.action?p_id=<s:property value="#phb.p_id" />">
-                               	 			<img width="70%" height="70%" src="images/productimg/<s:property value="#phb.smallimg" />">
+                               	 			<img  src="images/productimg/<s:property value="#phb.smallimg" />">
                                	 		</a>
                                	 	</p>
                             	</li>
@@ -88,14 +90,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <%int i=0; %>
                      <s:iterator value="jtcbProductTen" var="jtcb">
                      <%i++; %>
-                    <%if((i-1)%5==0){%><ul class="clearfix"><%}%>
+                    <%if((i-1)%4==0){%><ul class="clearfix"><%}%>
                         <li>
                             <p><img src="images/productimg/<s:property value="#jtcb.smallimg"/>"></p>
                             <p><a href="ShowProDetail.action?p_id=<s:property value="#jtcb.p_id" />"><s:property value="#jtcb.p_name"/></a></p>
                             <p>￥<s:property value="#jtcb.unitprice"/></p>
                         </li>
                         
-                  <%if(i%5==0){%>  </ul><%}%>
+                  <%if(i%4==0){%>  </ul><%}%>
                    </s:iterator>
                 </div>
             </div>
@@ -106,18 +108,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <%i=0; %>
                      <s:iterator value="zxypProductTen" var="zxyp">
                      <%i++; %>
-                    <%if((i-1)%5==0){%><ul class="clearfix"><%}%>
+                    <%if((i-1)%4==0){%><ul class="clearfix"><%}%>
                         <li>
                             <p><img src="images/productimg/<s:property value="#zxyp.smallimg"/>"></p>
                             <p><a href="ShowProDetail.action?p_id=<s:property value="#zxyp.p_id" />"><s:property value="#zxyp.p_name"/></a></p>
                             <p>￥<s:property value="#zxyp.unitprice"/></p>
                         </li>
                         
-                  <%if(i%5==0){%>  </ul><%}%>
+                  <%if(i%4==0){%>  </ul><%}%>
                    </s:iterator>
                    
                 </div>
             </div>
+           <s:if test="#session.onlineUser!=null">
+            <div>
+            	<h3>猜你喜欢</h3>
+                <div class="clearfix">
+                    
+                  
+                     
+                   		
+                    <s:iterator value="guessfav" var="gf">
+                        <div style="float:left; border:0;">
+                        	
+	                            <p><img src="images/productimg/<s:property value="#gf.smallimg"/>"></p>
+	                            <p><a href="ShowProDetail.action?p_id=<s:property value="#gf.p_id" />"><s:property value="#gf.p_name"/></a></p>
+	                            <p>￥<s:property value="#gf.unitprice"/></p>
+	                         
+                        </div>
+                     </s:iterator>   
+                		
+                 
+                   
+                </div>
+            </div>
+          </s:if>
         </div>
         <div class="bottom"></div>
     </div>

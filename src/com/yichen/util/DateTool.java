@@ -2,6 +2,7 @@ package com.yichen.util;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class DateTool {
 	/**
@@ -19,10 +20,15 @@ public class DateTool {
         return  c.getTimeInMillis(); 
 	}
 	
-	public static java.util.Date parseDate(String dateString) throws ParseException{
-		SimpleDateFormat dateFormat=new SimpleDateFormat("yyyyMMdd");
-		return dateFormat.parse(dateString);
+	public static Date parseDate(String dateString) throws ParseException{
+		return ConstVar.DATE_FORMAT_DATE.parse(dateString);
 	}
+	
+	public static Date parseDateTime(String datetimeString) throws ParseException{
+		return ConstVar.DATE_FORMAT_DATETIME.parse(datetimeString);
+	}
+	
+	
 	
 	
 

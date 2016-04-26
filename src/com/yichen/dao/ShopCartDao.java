@@ -102,22 +102,10 @@ public class ShopCartDao {
 	}
 	
 	
-	public void deleteAUserShopCarts(String uid){
+	public void deleteAUserShopCarts(String uid,Session session){
 		String hql="delete ShopCart as s where s.shopCpk.u_id=? ";
-		Session session = HibernateUtil.getSessionFactory().openSession();
-		Transaction tx = null;
-		try{
-			tx=session.beginTransaction();
 			Query query=session.createQuery(hql);
 			query.setString(0,uid);
 			query.executeUpdate();
-			tx.commit();
-			
-		}catch (RuntimeException e) {
-		    if (tx != null) tx.rollback();
-		    e.printStackTrace(); // or display error message
-		}finally{
-			session.close();//一个方法之后就要把session close掉
-		}
 	}
 }

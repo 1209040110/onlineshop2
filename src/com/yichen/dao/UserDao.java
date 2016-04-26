@@ -71,7 +71,8 @@ public class UserDao {
 		    if (tx != null) tx.rollback();
 		    e.printStackTrace(); // or display error message
 		}finally{
-			session.close();
+			if(session.isOpen())
+				session.close();
 		}
 		
 		return u;

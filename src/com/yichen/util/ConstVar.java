@@ -17,6 +17,8 @@ public class ConstVar {
 	public static final int ORDER_STATUS_CANCELED=4;
 	public static final SimpleDateFormat DATE_FORMAT_DATE = new SimpleDateFormat("yyyyMMdd");
 	public static final SimpleDateFormat DATE_FORMAT_DATETIME = new SimpleDateFormat("yyyyMMddHHmmss");
+	public static final SimpleDateFormat DATE_FORMAT_DATETIME_PRINT
+	= new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	public static final String REDUCE_COMMAND="reduce";
 	public static final String ADD_COMMAND="add";
 	public static final String NOT_LOGIN_STRING="nologin";

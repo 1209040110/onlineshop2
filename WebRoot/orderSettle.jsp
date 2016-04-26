@@ -11,15 +11,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <meta charset="UTF-8">
     <meta content="zh-CN" http-equiv="Content-Language" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
-    <title>网上医药馆-订单结算页</title>
+    <title>网上医药馆</title>
     <!--[if lt IE 9]>
     <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     <script src="js/jquery-1.11.0.js"></script>
     <!--<script src="js/sha1.js"></script>-->
-    <script src="js/bootstrap.js"></script>
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/commonheader.css">
     <link rel="stylesheet" type="text/css" href="css/font.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
@@ -29,56 +29,28 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         }
 
     </style>
-    <script>
-        function amountChange(command,amount,i,pid) {
-        	console.log($(".pamount").eq(i).val());
-            mypid=pid.toString().substr(0,5);
-            console.log(mypid);
-            $.ajax({
-                url : "amountChange.action",
-                async: true, //请求是否异步，默认为异步，这也是ajax重要特性
-                type : "GET",
-                data : {
-                    'pid':mypid,
-                    'command':command
-                },
-                beforeSend: function() {
-                    //请求前的处理
-                },
-                success : function(data, textStatus) {
-                    if(command=='reduce'){
-                      //  $(".pamount").eq(i).html(amount-1);
-                    }
-                    if(command=='add'){
-                       // $(".pamount").eq(i).html(amount+1);
-                    }
-                    
-                },
-                complete: function() {
-                    //请求完成的处理
-                },
-                error: function() {
-                    //请求出错处理
-                }
-            });
-
-
-        }
-    </script>
+  
 </head>
 
 <body>
-<div class="container" style="width:1270px;">
-	<s:include value="commonheader.jsp"/>
-    <form action="SubmitOrderAction.action">
+<div class="container">
+    <s:include value="commonheader.jsp"/>
+<form action="SubmitOrderAction.action" method="post">
         <div class="main">
-			
+
             <h2>选择收货地址:</h2>
             <%int i=0; %>
-            <s:iterator value="user.sendAddrs" var="sa">
-                <p>	<input name="userOrder.sendaddrId" type="radio" value="<s:property value="#sa.addrId"/>" />
-                    地址<%=++i%>:<s:property value="#sa.addrName"/>&nbsp;&nbsp;&nbsp;邮编：<s:property value="#sa.postcode"/>
-                    &nbsp;&nbsp;&nbsp; 收货人：<s:property value="#sa.cnee"/>&nbsp;&nbsp;&nbsp;收货人联系方式：<s:property value="#sa.cnee_tel"/>
+            <s:if test="user.sendAddrs.size()==0" >
+                <h3>新增收货地址</h3>
+                <p>收货地址：<input type="text" name="addrName" id="addr"/></p>
+                <p> 收货人：<input type="text" name="cnee" id="cnee"/></p>
+                <p>邮&nbsp;&nbsp;&nbsp; 编：<input type="text" name="postcode" id="postcode"/></p>
+                <p>联系方式：<input type="text" name="cnee_tel" id="cnee_tel"/></p>
+            </s:if>
+            <s:iterator value="user.sendAddrs" var="sadd">
+                <p>	<input name="userOrder.sendaddrId" type="radio" value="<s:property value="#sadd.addrId"/>" />
+                    地址<%=++i%>:<s:property value="#sadd.addrName"/>&nbsp;&nbsp;&nbsp;邮编：<s:property value="#sadd.postcode"/>
+                    &nbsp;&nbsp;&nbsp; 收货人：<s:property value="#sadd.cnee"/>&nbsp;&nbsp;&nbsp;收货人联系方式：<s:property value="#sadd.cnee_tel"/>
                 </p>
             </s:iterator>
             支付方式：
@@ -95,7 +67,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                 </tr>
                 <tr>
-                	<td height="20px;"></td>
+                    <td height="20px;"></td>
                 </tr>
                 <%int j=0;%>
                 <s:iterator value="shopCarts" var="s">
@@ -104,7 +76,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <td width="35%"><s:property value="#s.pname"/></td>
                         <td width="10%"><s:property value="#s.price"/></td>
                         <td width="10%" >
-                          <s:property value="#s.amount"/>
+                            <s:property value="#s.amount"/>
                         </td>
                         <td width="10%" class="discount"><s:property value="%{formatDouble(#s.discountprice)}"/></td>
                         <td width="10%" class="finalprice" ><s:property value="%{formatDouble(#s.discountprice*#s.amount)}"/></td>

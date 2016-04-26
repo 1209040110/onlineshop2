@@ -20,19 +20,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--<script src="js/sha1.js"></script>-->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/commonheader.css">
     <link rel="stylesheet" type="text/css" href="css/font.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
-    <style>
-        .container{
-            width:1270px;
-            margin: 0 auto;
-        }
-    </style>
     <script>
         function submitreview() {
         <%if(session.getAttribute("onlineUser")==null){%>
         	alert('请先登录!');
+        	window.location.href="login.jsp";
         <%}else{%>
         
             var score=$("#score").val();
@@ -54,6 +50,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 	alert('请先登录!');
                 if(data=='ok')
                    alert('评论成功!');
+                   
                 if(data=='fail')
 					alert('评论失败!');
                 },
@@ -70,7 +67,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 <body>
 <div class="container">
-    <div></div>
     <div id="main">
     	<h2>商品评论:</h2>
     	<%String pname = new String(request.getParameter("pname").getBytes("iso-8859-1"), "utf-8"); %>

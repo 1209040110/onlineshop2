@@ -7,7 +7,11 @@
 		<id name="sc_id" column="sc_id"  ></id>
 		<property name="sc_name"  />
 		<many-to-one name="bc" column="bc_id"></many-to-one>
-	
+		<set name="products" cascade="all"
+			inverse="true" lazy="false">
+			<key column="sc_id"/>
+			<one-to-many class="com.yichen.entity.Product"/>
+		</set>
 		
     </class>
 </hibernate-mapping> 

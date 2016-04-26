@@ -36,3 +36,6 @@
             <%}%>
         }
     </script>
+    
+    
+    window.location.href="showAllOrders.action";

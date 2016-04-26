@@ -1,10 +1,17 @@
 package com.yichen.entity;
 
-public class SmallClass {
+import java.util.Set;
+
+
+
+public class SmallClass implements Comparable<SmallClass> {
 	private String sc_id;//小类id
 	private String sc_name;//小类名称
-	
 	private BigClass bc;
+	private Set<Product> products;
+	private float recomscore=0;//推荐模块得分
+	private int buyamountsum=0;
+	private int favamouontsum=0;
 	public BigClass getBc() {
 		return bc;
 	}
@@ -22,6 +29,35 @@ public class SmallClass {
 	}
 	public void setSc_name(String sc_name) {
 		this.sc_name = sc_name;
+	}
+	
+	public Set<Product> getProducts() {
+		return products;
+	}
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+	
+	
+
+	
+	public float getRecomscore() {
+		return recomscore;
+	}
+	public void setRecomscore(float recomscore) {
+		this.recomscore = recomscore;
+	}
+	public int getBuyamountsum() {
+		return buyamountsum;
+	}
+	public void setBuyamountsum(int buyamountsum) {
+		this.buyamountsum = buyamountsum;
+	}
+	public int getFavamouontsum() {
+		return favamouontsum;
+	}
+	public void setFavamouontsum(int favamouontsum) {
+		this.favamouontsum = favamouontsum;
 	}
 	@Override
 	public int hashCode() {
@@ -45,6 +81,16 @@ public class SmallClass {
 		} else if (!sc_id.equals(other.sc_id))
 			return false;
 		return true;
+	}
+	@Override
+	public int compareTo(SmallClass o) {
+		if(this.recomscore<o.recomscore)
+			return 1;
+		else if(this.recomscore==o.recomscore)
+			return 0;
+		else
+			return -1;
+
 	}
 	
 

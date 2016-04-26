@@ -2,13 +2,17 @@ package com.yichen.action;
 
 
 import java.util.List;
+import java.util.Map;
 
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.yichen.dao.BigClassDao;
 import com.yichen.dao.ProductDao;
 import com.yichen.entity.BigClass;
 import com.yichen.entity.Product;
+import com.yichen.entity.User;
+import com.yichen.service.RecommendService;
 
 
 public class IndexAction extends ActionSupport {
@@ -16,8 +20,8 @@ public class IndexAction extends ActionSupport {
 	private List<Product> jtcbProductTen;
 	private List<Product> zxypProductTen;
 	private List<Product>  phbTopn;
-	
-
+	private Product[] guessfav;
+	private Map<String,Object> session;
 	public List<Product> getPhbTopn() {
 		return phbTopn;
 	}
@@ -52,6 +56,18 @@ public class IndexAction extends ActionSupport {
 
 
 
+	public Product[] getGuessfav() {
+		return guessfav;
+	}
+	
+	public Map<String, Object> getSession() {
+		return session;
+	}
+
+	public void setSession(Map<String, Object> session) {
+		this.session = session;
+	}
+
 	@Override
 	public String execute() throws Exception {
 		BigClassDao bigClassDao=new BigClassDao();
@@ -60,6 +76,17 @@ public class IndexAction extends ActionSupport {
 		jtcbProductTen=productDao.selectAscTop("01",10);
 		zxypProductTen=productDao.selectAscTop("02",10);
 		phbTopn=productDao.selectphbTopn(5);
+		ActionContext actionContext=ActionContext.getContext();
+		session=actionContext.getSession();
+		System.out.println("--------------1");
+		if(session!=null){
+			User u=(User) session.get("onlineUser");
+			System.out.println("--------------2");
+			if(u!=null){
+				System.out.println("--------------3");
+				guessfav=new RecommendService().guessyourfav(u.getU_id());
+			}
+		}
 		return SUCCESS;
 	}
 

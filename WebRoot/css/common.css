@@ -1,5 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
+.container{
+    height: auto;
+    width: 1280px;
+    margin: 0 auto;
+
+}
 /*========定义通用样式========*/
 .inline {
     display: inline;

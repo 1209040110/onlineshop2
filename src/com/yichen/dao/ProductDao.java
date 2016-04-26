@@ -1,7 +1,9 @@
 package com.yichen.dao;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.hibernate.Query;
@@ -39,6 +41,24 @@ public class ProductDao {
 	}
 	
 	
+	public List<Product> selectAllscProForScore(Session session,String sc_id){
+		String hql="from Product as p where p.sc_id=?";
+		List<Product> products=null;
+		Query query=session.createQuery(hql);
+		query.setString(0,sc_id);
+		products=query.list();
+		return products;
+	}
+	//总销量
+	public Long salesvolumesum(Session session,String pid){
+		Long r=0l;
+		return r;
+	}
+	//总收藏数
+	public Long favedsum(Session session){
+		Long r=0l;
+		return r;
+	}
 	//排行榜销量Top n
 	public List<Product> selectphbTopn(int n){
 		String hql="from Product as p order by p.salesvolume desc";
@@ -134,6 +154,8 @@ public class ProductDao {
 		return p;
 	}
 	
+	
+
 	public static void main(String args[]){
 		ProductDao productDao=new ProductDao();
 		System.out.println(productDao.selectByPId("00001").getPreviews().size());

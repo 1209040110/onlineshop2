@@ -3,7 +3,9 @@ package com.yichen.entity;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Product {
+import org.apache.struts2.components.Else;
+
+public class Product implements Comparable<Product> {
 	private String p_id;//商品编号
 	private String p_name;//商品名
 	private String sc_id;//所属的小类id
@@ -15,6 +17,7 @@ public class Product {
 	private String smallimg;//图片地址
 	private float score;//商品评价分  1.0-5.0
 	private String other;//其他
+	private float recomscore;//推荐模块得分
 	private Set<Review> previews=new HashSet<Review>();//该商品所有评价
 	
 	public Set<Review> getPreviews() {
@@ -90,6 +93,15 @@ public class Product {
 	public void setOther(String other) {
 		this.other = other;
 	}
+	
+	
+	public float getRecomscore() {
+		return recomscore;
+	}
+	public void setRecomscore(float recomscore) {
+		this.recomscore = recomscore;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -112,6 +124,22 @@ public class Product {
 		} else if (!p_id.equals(other.p_id))
 			return false;
 		return true;
+	}
+	@Override
+	public int compareTo(Product o) {
+		if(o==null)
+			throw new NullPointerException();
+		if(this.score<o.score)
+			return 1;
+		else if(this.score==o.score){
+			if(this.salesvolume+this.rq<o.salesvolume+o.rq)
+				return 1;
+			else if(this.salesvolume+this.rq==o.salesvolume+o.rq)
+				return 0;
+			else
+				return -1;
+		}else
+			return -1;
 	}
 	
 	

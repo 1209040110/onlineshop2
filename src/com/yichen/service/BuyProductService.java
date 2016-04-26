@@ -65,30 +65,34 @@ public class BuyProductService {
 	
 	
 	//提交订单业务逻辑
-	public void submitOrder(String uid,Set<ShopCart> shopCarts,String paymentmode,String sendAddrId) {
-		//System.out.println(uid);
-		//System.out.println(shopCarts);
-		//System.out.println(paymentmode);
-		//System.out.println(sendAddrId);
+	public boolean submitOrder(String uid,Set<ShopCart> shopCarts,String paymentmode,String sendAddrId) {
+		UserDao userDao=new UserDao();
+		User user=userDao.selectById(uid);
+		boolean f=true;
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction tx = null;
+		
+		//事务开始
+		try{
+		tx=session.beginTransaction();
 		OrderDao orderDao=new OrderDao();
 		UserOrder uOrder=new UserOrder();
 		uOrder.setPaymentmode(paymentmode);
 		uOrder.setSendaddrId(sendAddrId);
-		String oid=orderDao.getOid();
+		String oid=orderDao.getOid(session);
 		uOrder.setO_id(oid);
 		uOrder.setU_id(uid);
 		String datetime = ConstVar.DATE_FORMAT_DATETIME.format(new Date());
 		uOrder.setO_time(datetime);
 		uOrder.setO_status(ConstVar.ORDER_STATUS_WAITPAY);
 		float totalprice=0;
-		UserDao userDao=new UserDao();
-		User user=userDao.selectById(uid);
 		OrderItemDao orderItemDao=new OrderItemDao();
 		float discount=user.getDiscount(user.getRank());
 		for(ShopCart s:shopCarts){
 			//System.out.println("----");
 			totalprice+=s.getAmount()*s.getPrice();
-			orderItemDao.addANewItem(oid,s.getShopCpk().getP_id(), s.getAmount(), s.getPrice());
+			orderItemDao.addANewItem(oid,s.getShopCpk().getP_id(), s.getAmount(), s.getPrice(),session);
+			
 		}
 		totalprice*=discount;
 		uOrder.setTotalprice(totalprice);
@@ -96,8 +100,18 @@ public class BuyProductService {
 			uOrder.setFreight(0);
 		else
 			uOrder.setFreight(ConstVar.FREIGHT_STANDARD);
-		orderDao.addANewOrder(uOrder);
-		shopCartDao.deleteAUserShopCarts(uid);
+		orderDao.addANewOrder(uOrder,session);
+		shopCartDao.deleteAUserShopCarts(uid,session);
+		tx.commit();
+		}catch (RuntimeException e) {
+		    if (tx != null) tx.rollback();
+		    e.printStackTrace(); // or display error message
+		    f=false;
+		}finally{
+			if(session.isOpen())
+				session.close();//一个方法之后就要把session close掉
+		}
+		return f;
 	}
 	
 	

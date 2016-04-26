@@ -19,9 +19,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!--<script src="js/sha1.js"></script>-->
     <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/commonheader.css">
     <link rel="stylesheet" type="text/css" href="css/font.css">
-    <link rel="stylesheet" type="text/css" href="css/headerfooter.css">
-    <link rel="stylesheet" type="text/css" href="css/smallclass.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
 	<style>
         #middleright p{
             line-height: 200%;
@@ -43,12 +44,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <p>￥<s:property value="product.unitprice"/></p>
                         <p>运费:10</p>
                         <p>销量:<s:property value="product.salesvolume"/></p>
-                        <p>  累计评价：<s:property value="product.evaluationsum"/></p>
+                        <p>累计评价：<s:property value="product.evaluationsum"/></p>
                         <p>数量：<select name="count" style="width:70px;">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
-                        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;库存:<s:property value="product.stock"/></p>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                        </select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
                         <p><button   onclick="addAFav()">收藏商品</button>(<span id="rq"><s:property value="product.rq"/></span>人气)</p>
                         <p><button onclick="gosettle()">立即购买</button> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <button Onclick="addAShopCart()">加入购物车</button></p>
@@ -171,7 +175,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div style="height: auto;" class="clearfix">
                     <h4>产品参数</h4>
                     <div>
-                        <table border="0">
+                        <table border="1">
                             <tr>
                                 <td width="400px;">产品名称:<s:property value="product.p_name"/></td>
                                 <td width="400px;">产品剂型:<s:property value="productDetail.cpjx"/></td>
@@ -210,15 +214,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <h3>累计评价用户数：<s:property value="product.evaluationsum"/> </h3>
                     <div>得分:<s:property value="product.score"/></div>
                     <a href="addReview.jsp?pid=<s:property value="product.p_id"/>&&pname=<s:property value="product.p_name"/>">增加评论</a>
-                    <ul class="clearfix">
+                    <div class="clearfix">
+                    	<table border="1">
                     	<s:iterator value="product.previews" var="rv">
-                        	<li>
-                            	<div class="" style="float:left; width: 800px;"><s:property value="#rv.r_content"/></div>
-                            	<div class="" style="float:left; width: 200px;">打分：<s:property value="#rv.score"/></div>
-                            	<div class="" style="float:left; width: 200px;">（匿名）</div>
-                        	</li>
+                        	<tr>
+                            	<td width="60%" class="" ><s:property value="#rv.r_content"/></td>
+                            	<td width="20%" class="" >打分：<s:property value="#rv.score"/></td>
+                            	<td width="20%" class="" >（匿名）</td>
+                        	</tr>
                         </s:iterator>
-                    </ul>
+                        </table>
+                    </div>
                 </div>
 
             </div>

@@ -6,7 +6,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 %>
 <!DOCTYPE html>
 <html lang="en">
-	<meta charset="UTF-8">
+<head>
+<base href="<%=basePath%>">
+    <meta charset="UTF-8">
     <meta content="zh-CN" http-equiv="Content-Language" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
     <title>网上医药馆</title>
@@ -15,6 +17,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <![endif]-->
     <script src="js/jquery-1.11.0.js"></script>
     <!--<script src="js/sha1.js"></script>-->
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/commonheader.css">
+    <link rel="stylesheet" type="text/css" href="css/font.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/button.css">
 
    
     
@@ -50,13 +58,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 }
             });
         }
-    </script>
+
 
 </script>
 	</head>
 
 
 	<body>
+	<div class="container">
+    <div id="main">
 	<h1>注册</h1>
 	<form action="Register.action" method="post">
                         <table cellSpacing="0" cellPadding="0" width="100%" border="0" height="143" >
@@ -153,5 +163,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </table>
                         <br />
     </form>
+    </div>
+    </div>
 	</body>
 </html>
