@@ -33,7 +33,7 @@ public class User {
 	private Set<UserOrder> userOrders=new HashSet<UserOrder>();
 	private ShopCart shopCart;
 	private Set<SendAddr> sendAddrs=new HashSet<SendAddr>();
-	private List<Product> favpros=new ArrayList<Product>();
+	private Set<Product> favpros=new HashSet<Product>();
 	public Set<SendAddr> getSendAddrs() {
 		return sendAddrs;
 	}
@@ -170,10 +170,11 @@ public class User {
 	
 	
 	
-	public List<Product> getFavpros() {
+
+	public Set<Product> getFavpros() {
 		return favpros;
 	}
-	public void setFavpros(List<Product> favpros) {
+	public void setFavpros(Set<Product> favpros) {
 		this.favpros = favpros;
 	}
 	@Override

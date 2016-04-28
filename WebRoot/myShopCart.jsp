@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<base href="<%=basePath%>">
+    <base href="<%=basePath%>">
     <meta charset="UTF-8">
     <meta content="zh-CN" http-equiv="Content-Language" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
@@ -23,45 +23,50 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="css/font.css">
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
+    <style>
+        th{
+            min-width: 100px;
+        }
+    </style>
 </head>
 
 <body>
- <div class="container" >
-  <s:include value="commonheader.jsp"/>
-  <h3>我的购物车：</h3>
-  <table border="0">
-  	<tr>
-  		<td>商品名</td>
-  		<td>单价</td>
-  		<td>数量</td>
-  		<td>折扣价</td>
-  		<td>小计</td>
- 	</tr>
- 	<tr>
-                        <td height="20px;"></td>
-    </tr>
- 	<s:iterator value="shopCarts" var="shopcart">
- 		<tr>
-  		<td width="35%"><s:property value="#shopcart.pname"/></td>
-  		<td width="10%"><s:property value="%{formatDouble(#shopcart.price)}"/></td>
-  		<td width="10%">
+<div class="container" >
+    <s:include value="commonheader.jsp"/>
+    <h3>我的购物车：</h3>
+    <table border="0">
+        <tr>
+            <th>商品名</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>折扣价</th>
+            <th>小计</th>
+        </tr>
+        <tr>
+            <td height="20px;"></td>
+        </tr>
+        <s:iterator value="shopCarts" var="shopcart">
+            <tr>
+                <td width="35%"><s:property value="#shopcart.pname"/></td>
+                <td width="10%"><s:property value="%{formatDouble(#shopcart.price)}"/></td>
+                <td width="10%">
   			<span>
   				<a href=""></a>
   				<s:property value="#shopcart.amount"/>
   				<a href=""></a>
   			</span>
-  		</td>
-  		<td width="10%"><s:property value="%{formatDouble(#shopcart.discountprice)}"/></td>
-  		<td width="10%"><s:property value="%{formatDouble(#shopcart.discountprice*#shopcart.amount)}"/></td>
- 	</tr>
- 	<tr>
-                        <td height="20px;"></td>
-    </tr>
- 	</s:iterator>
-  </table>
-  
-  
-  
+                </td>
+                <td width="10%"><s:property value="%{formatDouble(#shopcart.discountprice)}"/></td>
+                <td width="10%"><s:property value="%{formatDouble(#shopcart.discountprice*#shopcart.amount)}"/></td>
+            </tr>
+            <tr>
+                <td height="20px;"></td>
+            </tr>
+        </s:iterator>
+    </table>
+
+
+
     <a class="button button-primary button-pill button-small" href="goSettle.action">去结算</a>
 </div>
 

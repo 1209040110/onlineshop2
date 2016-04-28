@@ -37,5 +37,7 @@
 			<key column="uid"/>
 			<one-to-many class="com.yichen.entity.SendAddr"/>
 		</set>
+		
+		
     </class>
 </hibernate-mapping> 

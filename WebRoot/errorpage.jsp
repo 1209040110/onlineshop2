@@ -1,4 +1,9 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+request.setCharacterEncoding("utf-8");
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -25,8 +30,8 @@
 
 <body><div  style="margin:0 auto; width:1024px;" >
 	<img src="images/error.jpg" alt="" />
-	<a href="index.jsp" style="position:absolute;
-	top:100px;left:200px;color:black;
+	<a href="index.action" style="position:absolute;
+	top:375px;left:600px;color:black;
 	">回到主页</a>
 </div>
 

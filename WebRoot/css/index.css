@@ -26,8 +26,10 @@ a:hover{
     padding-left: 20px;
 }
 .ppt{
-    width: 680px;
-    height: 320px;
+    width: 600px;
+    height: 300px;
+    margin-left:32px;
+    border:none;
 }
 .jtcb,.zbys{
     height: auto;

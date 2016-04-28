@@ -26,7 +26,11 @@ public class RegisterAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		UserDao userDao=new UserDao();
-		userDao.addANewUser(u);
+		boolean f=userDao.addANewUser(u);
+		if(!f){
+			this.addActionError("注册失败！");
+			return ERROR; 
+		}
 		return SUCCESS;
 	}
 

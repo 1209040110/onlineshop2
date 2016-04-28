@@ -27,5 +27,27 @@
   	<filter-name>struts2</filter-name>
   	<url-pattern>*.action</url-pattern>
   </filter-mapping>
+   <error-page>
+ 9    <error-code>404</error-code>
+10    <location>/errorpage.jsp</location>
+11</error-page>
+12
+13<error-page>
+14    <error-code>500</error-code>
+15    <location>/errorpage.jsp</location>
+16</error-page>
+<error-page>  
+<exception-type>java.lang.Exception</exception-type>  
+<location>/errorpage.jsp</location>  
+</error-page>  
+<!-- java.lang.NullPointerException异常错误,依据这个标记可定义多个类似错误提示 -->  
+<error-page>  
+<exception-type>java.lang.NullPointerException </exception-type>  
+<location>/errorpage.jsp</location>  
+</error-page>  
   
+<error-page>  
+<exception-type>javax.servlet.ServletException</exception-type>  
+<location>/errorpage.jsp</location>  
+</error-page>  
   </web-app>

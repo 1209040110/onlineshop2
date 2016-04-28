@@ -3,6 +3,7 @@ package com.yichen.dao;
 import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.Delayed;
 
 
 import org.hibernate.Query;
@@ -82,7 +83,16 @@ public class FavouriteDao {
 		return r;
 	}
 	
-	
+	public boolean delAfav(String uid,String pid,Session session){
+		boolean f=true;
+		ShopCartCompositePK CompositePK=new ShopCartCompositePK(uid, pid);
+		Favorite fav=(Favorite) session.get(Favorite.class,CompositePK);
+		if(fav==null) f=false;
+		else{
+			session.delete(fav);
+		}
+		return f;
+	}
 	
 	public static void main(String args[]){
 		Session session=HibernateUtil.getSessionFactory().openSession();

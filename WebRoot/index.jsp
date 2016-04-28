@@ -24,6 +24,36 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="css/button.css">
     <link rel="stylesheet" type="text/css" href="css/index.css">
+  <style type="text/css">
+* {
+
+	list-style: none;
+}
+.clear-fix {
+ *zoom:1;
+}
+.clear-fix:after {
+	content: "\0020";
+	clear: both;
+	height: 0;
+	display: block;
+}
+.ppt li{
+	float:left;
+	width:600px;
+	height:300px;
+}
+.ppt ul{
+	width:10000px;
+}
+.img_box{
+	width:600px;
+	height:300px;
+	overflow:hidden;
+	text-align:center;
+	margin:0 auto;
+}
+</style>
 </head>
 
 <body>
@@ -34,7 +64,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <div class="nav clearfix" >
                 <ul>
                     <li>首页</li>
-                    <li>药师咨询</li>
+                    <li><a  target="blank" href="http://localhost:8080/chatonline/patientclient.jsp">药师咨询</a></li>
                     <li>网络医院</li>
                 </ul>
             </div>
@@ -63,7 +93,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </div>
                
                 <div class="mainmiddleright">
-                    <div class="ppt">幻灯片</div>
+                    <div class="ppt"><div class="img_box">
+  <ul class="clear-fix">
+    <li><img src="images/ppt/1.jpg" style="width:600px;height:300px;" /></li>
+    <li><img src="images/ppt/2.jpg" style="width:600px;height:300px;"/></li>
+    <li><img src="images/ppt/3.jpg" style="width:600px;height:300px;" /></li>
+    <li><img src="images/ppt/4.jpg" style="width:600px;height:300px;" /></li>
+    <li><img src="images/ppt/5.jpg" style="width:600px;height:300px;" /></li>
+  </ul>
+ 
+</div></div>
                     <div class="rank">
                         <h3>排行榜</h3>
                         <ul>
@@ -146,5 +185,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         </div>
         <div class="bottom"></div>
     </div>
+   <script type="text/javascript">
+var n=0; 
+function slider(index){ 
+$(".ppt ul").stop().animate({marginLeft:-index*600},1000); 
+} 
+ 
+setInterval(function(){ 
+n++; 
+n=n>=$(".ppt li").length?0:n; 
+slider(n); 
+},2000); 
+</script>
 </body>
 </html>

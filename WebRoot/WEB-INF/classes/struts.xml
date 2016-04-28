@@ -2,7 +2,12 @@
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
 	<package name="onlineshop" extends="struts-default" >
-		
+		<global-results>	
+		<result name="commonErrorPage">/errorpage.jsp</result>
+		</global-results> 
+		<global-exception-mappings>
+		 <exception-mapping name="commonErrorPage" exception="java.lang.Exception" result="commonErrorPage"/> 
+		</global-exception-mappings>
 		<action name="index" class="com.yichen.action.IndexAction" >
 			<result name="success">/index.jsp</result>
 		</action>
@@ -14,6 +19,7 @@
 		</action>
 		<action name="Register" class="com.yichen.action.RegisterAction" >
 			<result name="success" type="chain">index</result>
+			<result name="error" >/register.jsp</result>
 		</action>
 		<action name="SelectAUserAllInfo" class="com.yichen.action.SelectAUserAllInfo"  >
 			<result name="success">/UserInfo.jsp</result>
@@ -36,10 +42,26 @@
 			<result name="success" type="redirect">index.action</result>
 			<result name="login">/login.jsp</result>
 		</action>
-		
+		<action name="addproduct" class="com.yichen.action.ProductAction"   method="addPro">
+			<result name="success" type="redirect">index.action</result>
+			<result name="login">/adminLogin.jsp</result>
+			<result name="input" type="chain">addPVi</result>
+			<result name="error" type="chain">addPVi</result>
+		</action>
+		<action name="addPVi" class="com.yichen.action.ProductAction"   method="showscs">
+			<result name="success">/addProduct.jsp</result>
+			<result name="login">/adminLogin.jsp</result>
+		</action>
 		<action name="showMyOrders" class="com.yichen.action.ShowMyOrder"  >
 			<result name="success">/myorder.jsp</result>
 			<result name="login">/login.jsp</result>
+		</action>
+		<action name="myfav" class="com.yichen.action.FavAction"  method="show" >
+			<result name="success">/myfav.jsp</result>
+			<result name="login">/login.jsp</result>
+		</action>
+		<action name="delfav" class="com.yichen.action.FavAction"  method="del" >
+			
 		</action>
 		<action name="showAllOrders" class="com.yichen.action.ShowAllOrders"  >
 			<result name="success">/admin/orderManage.jsp</result>

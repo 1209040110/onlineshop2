@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import com.yichen.util.ConstVar;
 import com.yichen.util.HibernateUtil;
 import com.yichen.util.Md5;
+import com.yichen.entity.Product;
 import com.yichen.entity.Review;
 import com.yichen.entity.SendAddr;
 import com.yichen.entity.User;
@@ -105,6 +106,7 @@ public class UserDao {
 	public boolean addANewUser(User user){
 		Session session = HibernateUtil.getSessionFactory().openSession();
 		Transaction tx = null;
+		boolean f=true;
 		if(user.getSex().equals("female"))
 			user.setSex("女");
 		else
@@ -120,22 +122,22 @@ public class UserDao {
 		}catch (RuntimeException e) {
 		    if (tx != null) tx.rollback();
 		    e.printStackTrace(); // or display error message
+		    f=false;
 		}finally{
 			session.close();
 		}
-		return true;
+		return f;
 	}
 	
 	public static void main(String args[]){
 		UserDao userDao=new UserDao();
-		Set<Review> reviews=userDao.selectReById("597429882");
-		for(Review r:reviews){
-			System.out.println(r.getR_content());
+		String uid="294982682";
+		User u=userDao.selectById(uid);
+		System.out.println(u.getFavpros());
+		for(Product p:u.getFavpros()){
+			System.out.println(p.getP_name());
 		}
-		Set<SendAddr> sendAddrs=userDao.selectSAById("597429882");
-		for(SendAddr sa:sendAddrs){
-			System.out.println(sa.getAddrName());
-		}
+		
 		
 		
 		

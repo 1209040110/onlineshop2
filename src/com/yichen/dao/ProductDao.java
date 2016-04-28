@@ -123,6 +123,10 @@ public class ProductDao {
 			}
 			return f;
 		}
+		
+		public void updateProNewVer(Product product,Session session){
+			session.update(product);
+		}
 	
 	//单个产品-需求即是商品详情
 	public Product selectByPId(String p_id){

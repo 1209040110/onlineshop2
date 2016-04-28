@@ -7,6 +7,7 @@
         	&nbsp;&nbsp;&nbsp;&nbsp; <a href="logout.action">&nbsp;&nbsp;&nbsp;&nbsp;注销</a>
         	&nbsp;&nbsp;&nbsp;&nbsp; <a href="ShowMyShopCartsAction.action">我的购物车</a>
         	&nbsp;&nbsp;&nbsp;&nbsp; <a href="showMyOrders.action">我的订单</a>
+        	&nbsp;&nbsp;&nbsp;&nbsp; <a href="myfav.action">我的收藏的商品</a>
         </s:else>
        &nbsp;&nbsp;&nbsp;&nbsp; <a href="index.action">首页</a>
 </div>
